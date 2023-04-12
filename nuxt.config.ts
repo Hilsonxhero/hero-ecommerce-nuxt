@@ -5,6 +5,12 @@ export default defineNuxtConfig({
     ],
     css: ["@/assets/sass/main.scss", "@/assets/css/tailwind.css"],
 
+    runtimeConfig: {
+        public: {
+            baseURL: 'http://localhost/api/v1/application',
+        }
+    },
+
 
     postcss: {
         plugins: {

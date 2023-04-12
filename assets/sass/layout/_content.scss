@@ -25,3 +25,8 @@ body {
   direction: rtl;
   text-align: right;
 }
+
+.nuxt-icon svg {
+  width: inherit !important;
+  height: inherit !important;
+}

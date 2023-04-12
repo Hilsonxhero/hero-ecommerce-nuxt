@@ -5,6 +5,14 @@
         <div class="h-16">
           <div class="flex items-center h-full justify-between">
             <div class="flex items-center">
+              <base-button
+                class="block lg:hidden"
+                icon
+                variant="gray"
+                @click="showNavHandler"
+              >
+                <nuxt-icon class="text-gray-400" name="menu-bulk"></nuxt-icon>
+              </base-button>
               <div class="hidden lg:block">
                 <div href="" class="t-header__logo w-20">
                   <img src="~/assets/media/logo.png" class="max-h-75px" />
@@ -38,12 +46,9 @@
               class="flex lg:hidden items-center absolute left-1/2 transform -translate-x-1/2"
             ></div>
             <div class="flex items-center">
+              <app-base-search></app-base-search>
               <div class="hidden lg:flex">
-                <BaseButton
-                  class="mr-2"
-                  variant="light"
-                  @click="visible_search = true"
-                >
+                <BaseButton class="mr-2" variant="light">
                   <nuxt-icon name="user-bulk"></nuxt-icon>
                 </BaseButton>
 
@@ -57,17 +62,19 @@
       </div>
     </header>
 
-    <base-dialog
+    <!-- <base-dialog
       @close="handleCloseSearch"
       title="جستجو"
       custom-class="lg:w-[60%]"
       v-model="visible_search"
     >
-    </base-dialog>
+    </base-dialog> -->
   </div>
 </template>
 
 <script setup lang="ts">
+import { onClickOutside } from "@vueuse/core";
+
 const menus = ref([
   { title: "دسته بندی ها", to: "categories" },
   { title: "پیشنهادات ویژه", to: "promotion index" },
@@ -80,6 +87,32 @@ const visible_search = ref(false);
 const handleCloseSearch = () => {
   visible_search.value = false;
 };
+const showNavHandler = () => {
+  active.value = true;
+};
+
+onClickOutside(navRef, (event) => {
+  active.value = false;
+});
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+.hx-header__nav {
+  @media (max-width: 1024px) {
+    transition: all 0.5s ease-in-out;
+    transform: translateX(100%);
+    // z-index: 70;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    align-items: stretch;
+
+    &.is-active {
+      transform: translateX(0);
+    }
+  }
+}
+</style>
