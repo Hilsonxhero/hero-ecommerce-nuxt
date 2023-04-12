@@ -1,0 +1,115 @@
+.hx-dialog {
+  position: relative;
+  background-color: #fff;
+  border-radius: 1rem 1rem 0 0;
+  // transition: all 0.3s;
+  overflow: hidden;
+  padding: 1rem 1rem 0rem;
+
+  .show-modal & {
+    transform: translateY(0);
+  }
+
+  @include media-breakpoint-up(lg) {
+    & {
+      margin: auto;
+      width: 380px;
+      border-radius: 1.25rem;
+      max-height: 80vh;
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    // padding: .4rem 0;
+  }
+
+  &__body {
+    margin: 1rem 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    height: 100%;
+    height: fit-content;
+    max-height: calc(80vh - 150px);
+  }
+}
+
+.hx-overlay-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: flex-end;
+  overflow: hidden;
+  z-index: 1005;
+}
+
+$transition-duration: () !default;
+$transition-duration: 0.3s;
+
+// .dialog-fade-enter-active {
+//     animation: modal-fade-in 0.3s;
+
+//     .hx-overlay-dialog {
+//         animation: dialog-fade-in 0.3s;
+//     }
+// }
+
+// .dialog-fade-leave-active {
+//     animation: modal-fade-out 0.3s;
+
+//     .hx-overlay-dialog {
+//         animation: dialog-fade-out 0.3s;
+//     }
+// }
+
+// @keyframes dialog-fade-in {
+//     0% {
+//         transform: translate3d(0, -20px, 0);
+//         opacity: 0;
+//     }
+
+//     100% {
+//         transform: translate3d(0, 0, 0);
+//         opacity: 1;
+//     }
+// }
+
+// @keyframes dialog-fade-out {
+//     0% {
+//         transform: translate3d(0, 0, 0);
+//         opacity: 1;
+//     }
+
+//     100% {
+//         transform: translate3d(0, -20px, 0);
+//         opacity: 0;
+//     }
+// }
+
+// @keyframes modal-fade-in {
+//     0% {
+//         opacity: 0;
+//     }
+
+//     100% {
+//         opacity: 1;
+//     }
+// }
+
+// @keyframes modal-fade-out {
+//     0% {
+//         opacity: 1;
+//     }
+
+//     100% {
+//         opacity: 0;
+//     }
+// }
