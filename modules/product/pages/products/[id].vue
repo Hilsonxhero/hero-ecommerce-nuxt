@@ -1,6 +1,6 @@
 <template>
   <div class="container my-4">
-    <base-skeleton animated :loading="loading">
+    <!-- <base-skeleton animated :loading="loading">
       <template #template>
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-8">
@@ -20,7 +20,10 @@
       <template #default>
         <section class="container text-center my-4">show product page</section>
       </template>
-    </base-skeleton>
+    </base-skeleton> -->
+    <section class="container my-4">
+      <h2>show product page</h2>
+    </section>
   </div>
 </template>
 

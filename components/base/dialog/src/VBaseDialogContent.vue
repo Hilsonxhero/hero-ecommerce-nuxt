@@ -31,7 +31,7 @@
         
       </button> -->
       <hx-button v-if="showClose" icon variant="gray" @click="$emit('close')">
-        <hx-icon icon="close" class="w-6 h-6"></hx-icon>
+        <nuxt-icon name="close" class="w-6 h-6"></nuxt-icon>
       </hx-button>
     </header>
     <div :id="bodyId" :class="ns.e('body')">
