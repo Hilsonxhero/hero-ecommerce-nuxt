@@ -1,5 +1,5 @@
-import ConfigProvider from './src/config-provider'
+import ConfigProvider from './src/VConfigProvider'
 
 export default ConfigProvider
 
-export * from './src/config-provider'
+export * from './src/VConfigProvider'

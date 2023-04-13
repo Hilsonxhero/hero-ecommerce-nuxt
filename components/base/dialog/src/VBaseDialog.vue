@@ -65,8 +65,8 @@ import { computed, provide, ref, useSlots } from "vue";
 // import { useDeprecated, useNamespace, useSameTarget } from "@/core/hooks";
 import { dialogInjectionKey } from "@/core/tokens";
 import HxFocusTrap from "@/components/base/focus-trap";
-import HxDialogContent from "./dialog-content.vue";
-import { dialogEmits, dialogProps } from "./dialog";
+import HxDialogContent from "./VBaseDialogContent.vue";
+import { dialogEmits, dialogProps } from "./VDialog";
 import { useDialog } from "./use-dialog";
 
 const props = defineProps(dialogProps);

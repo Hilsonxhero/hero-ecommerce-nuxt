@@ -18,6 +18,12 @@ export default defineNuxtConfig({
             autoprefixer: {},
         },
     },
+    // components: [
+    //     {
+    //         path: '~/components/base',
+    //         extensions: ['.ts'],
+    //     }
+    // ]
 
     // vite: {
     //     css: {

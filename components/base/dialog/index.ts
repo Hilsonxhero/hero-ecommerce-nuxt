@@ -1,6 +1,6 @@
 
-import Dialog from './src/dialog.vue'
+import Dialog from './src/VBaseDialog.vue'
 export default Dialog
 
 export * from './src/use-dialog'
-export * from './src/dialog'
+export * from './src/VDialog'

@@ -1,6 +1,6 @@
 import { buildProps, definePropType, isBoolean } from '@/utils'
 import { UPDATE_MODEL_EVENT } from '@/core/constants'
-import { dialogContentProps } from './dialog-content'
+import { dialogContentProps } from './VDialogContent'
 
 import type { ExtractPropTypes } from 'vue'
 

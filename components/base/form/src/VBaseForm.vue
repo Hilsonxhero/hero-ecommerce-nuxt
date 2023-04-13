@@ -8,7 +8,7 @@
 import { computed, provide, reactive, toRefs, watch } from "vue";
 import { debugWarn, isFunction } from "@/utils";
 import { formContextKey } from "@/core/tokens";
-import { formEmits, formProps } from "./form";
+import { formEmits, formProps } from "./VForm";
 import { filterFields, useFormLabelWidth } from "./utils";
 
 import type { ValidateFieldsError } from "async-validator";
@@ -19,7 +19,7 @@ import type {
   FormValidateCallback,
   FormValidationResult,
 } from "@/core/tokens";
-import type { FormItemProp } from "./form-item";
+import type { FormItemProp } from "./VFormItem";
 
 const COMPONENT_NAME = "HxForm";
 

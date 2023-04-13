@@ -8,7 +8,7 @@ import {
 } from '@/utils'
 
 import type { ExtractPropTypes } from 'vue'
-import type { FormItemProp } from './form-item'
+import type { FormItemProp } from './VFormItem'
 import type { FormRules } from '@/core/tokens'
 
 export const formProps = buildProps({

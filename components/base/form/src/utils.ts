@@ -2,7 +2,7 @@ import { computed, ref } from 'vue'
 import { debugWarn, ensureArray } from '@/utils'
 import type { Arrayable } from '@/utils'
 import type { FormItemContext } from '@/core/tokens'
-import type { FormItemProp } from './form-item'
+import type { FormItemProp } from './VFormItem'
 
 const SCOPE = 'HxForm'
 

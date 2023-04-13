@@ -1,4 +1,4 @@
-import HxFocusTrap from './src/focus-trap.vue'
+import HxFocusTrap from './src/VBaseFocusTrap.vue'
 
 export default HxFocusTrap
 export * from './src/tokens'

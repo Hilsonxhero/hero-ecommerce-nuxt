@@ -168,6 +168,7 @@
 import { useFocus } from "@vueuse/core";
 import { debounce } from "lodash-unified";
 import { isEmpty } from "@/utils";
+import BaseDialog from "@/components/base/dialog";
 const inputRef = ref();
 
 const { focused } = useFocus(inputRef, { initialValue: true });

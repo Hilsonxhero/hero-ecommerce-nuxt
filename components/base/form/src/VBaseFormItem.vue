@@ -46,7 +46,7 @@ import {
 } from "@/utils";
 import { formContextKey, formItemContextKey } from "@/core/tokens";
 
-import { formItemProps } from "./form-item";
+import { formItemProps } from "./VFormItem";
 
 import type { CSSProperties } from "vue";
 import type { RuleItem } from "async-validator";
@@ -56,7 +56,7 @@ import type {
   FormValidateFailure,
 } from "@/core/tokens";
 import type { Arrayable } from "@/utils";
-import type { FormItemValidateState } from "./form-item";
+import type { FormItemValidateState } from "./VFormItem";
 
 const props = defineProps(formItemProps);
 const slots = useSlots();
