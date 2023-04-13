@@ -5,3 +5,4 @@ export * from "./error";
 export * from "./arrays";
 export * from "./objects";
 export * from "./typescript";
+export * from "./rand";

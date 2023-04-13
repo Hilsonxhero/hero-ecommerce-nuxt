@@ -29,6 +29,7 @@
 
 <script setup lang="ts">
 import { BaseSkeleton, BaseSkeletonItem } from "@/components/base/skeleton";
+import { BaseCollapseItem, BaseCollapse } from "@/components/base/collapse";
 const loading = ref(true);
 </script>
 
