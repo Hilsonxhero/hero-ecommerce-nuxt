@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     modules: [
-        '@pinia/nuxt', 'nuxt-swiper', 'nuxt-icons'
+        '@pinia/nuxt', 'nuxt-swiper', 'nuxt-icons', '~/modules/product/module'
     ],
     css: ["@/assets/sass/main.scss", "@/assets/css/tailwind.css"],
 
@@ -10,6 +10,15 @@ export default defineNuxtConfig({
             baseURL: 'http://localhost/api/v1/application',
         }
     },
+
+    // dir: {
+    //     pages: 'modules/product/pages'
+    // },
+
+    // dir: [
+    //     { path: 'pages' },
+    //     { path: 'modules/product/pages' }
+    // ],
 
 
     postcss: {
