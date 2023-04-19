@@ -1,28 +1,28 @@
 <template>
   <div>
     <section>
-      <TopSlider :items="init?.data?.banners?.header_banners" />
+      <TopSlider :items="init?.banners?.header_banners" />
     </section>
     <section class="">
-      <Categories :categories="init?.data?.main_categories" />
+      <Categories :categories="init?.main_categories" />
     </section>
     <section class="">
-      <Promotion :products="init?.data?.incredible_products" />
+      <Promotion :products="init?.incredible_products" />
     </section>
     <section class="my-12">
-      <QuadrupleBanner :items="init?.data?.banners?.top_banners" />
+      <QuadrupleBanner :items="init?.banners?.top_banners" />
     </section>
     <section class="my-12">
-      <Bestselling :products="init?.data?.best_selling_products" />
+      <Bestselling :products="init?.best_selling_products" />
     </section>
     <section class="my-12">
-      <TripleBanner :items="init?.data?.banners?.middle_banners" />
+      <TripleBanner :items="init?.banners?.middle_banners" />
     </section>
     <section class="my-8">
-      <Recommendations :recommendations="recommendations?.data" />
+      <Recommendations :recommendations="recommendations" />
     </section>
     <section class="my-12">
-      <Articles :items="init?.data?.articles" />
+      <Articles :items="init?.articles" />
     </section>
   </div>
 
@@ -42,18 +42,20 @@ import Articles from "@/modules/article/components/Articles.vue";
 import Recommendations from "@/modules/web/components/recommendation/Recommendations.vue";
 const store = useCounterStore();
 const { counter } = storeToRefs(store);
-const portfolios = ref([]);
+const init = ref();
 const config = useRuntimeConfig();
-const { pending, data: init } = useApiService("landing");
-const { data: recommendations } = useApiService("recommendation");
-watch(init, (newVal) => {
-  console.log("newVal", newVal);
-});
+const recommendations = ref([]);
 
 const fetchPortfolios = () => {};
 
-onMounted(() => {
-  // fetchPortfolios();
+onMounted(async () => {
+  const { data } = await useApiService.get("landing");
+
+  init.value = data;
+
+  const response = await useApiService.get("recommendation");
+
+  recommendations.value = response.data;
 });
 </script>
 

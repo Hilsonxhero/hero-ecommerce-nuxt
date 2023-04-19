@@ -39,14 +39,14 @@
         </template>
 
         <template v-else>
-          <hx-button icon variant="gray">
+          <base-button icon variant="gray">
             <nuxt-icon
               name="arrow-left"
               class="w-5 h-5"
               :class="[ns.be('item', 'arrow'), ns.is('active', isActive)]"
             >
             </nuxt-icon>
-          </hx-button>
+          </base-button>
         </template>
       </div>
     </div>

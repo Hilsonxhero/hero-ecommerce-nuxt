@@ -17,7 +17,7 @@
           @mousedown="overlayEvent.onMousedown"
           @mouseup="overlayEvent.onMouseup"
         >
-          <hx-focus-trap
+          <base-focus-trap
             loop
             :trapped="visible"
             focus-start-el="container"
@@ -52,7 +52,7 @@
                 <slot name="footer" :close="handleClose" />
               </template>
             </hx-dialog-content>
-          </hx-focus-trap>
+          </base-focus-trap>
         </div>
       </div>
     </transition>
@@ -61,10 +61,7 @@
 
 <script lang="ts" setup>
 import { computed, provide, ref, useSlots } from "vue";
-// import { ElOverlay } from "@/core/overlay";
-// import { useDeprecated, useNamespace, useSameTarget } from "@/core/hooks";
 import { dialogInjectionKey } from "@/core/tokens";
-import HxFocusTrap from "@/components/base/focus-trap";
 import HxDialogContent from "./VBaseDialogContent.vue";
 import { dialogEmits, dialogProps } from "./VDialog";
 import { useDialog } from "./use-dialog";

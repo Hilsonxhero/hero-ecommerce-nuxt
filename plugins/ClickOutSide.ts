@@ -14,7 +14,7 @@ const onMounted = function (
     vnode: any
 ) {
     onUnmounted(el);
-    console.log("vnode", vnode);
+
 
     let vm = vnode.context;
     let callback = binding.value;

@@ -2,7 +2,8 @@ import Form from './src/VBaseForm.vue'
 import FormItem from './src/VBaseFormItem.vue'
 
 export default Form
-export const HxFormItem = FormItem
+export const BaseForm = Form
+export const BaseFormItem = FormItem
 
 export * from './src/VForm'
 export * from './src/VFormItem'

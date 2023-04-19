@@ -10,7 +10,8 @@ export const useCommonStore = defineStore("common", () => {
         try {
             const config = useRuntimeConfig()
 
-            const { data } = await $fetch('init', { baseURL: config.public.baseURL });
+            // const { data } = await $fetch('init', { baseURL: config.public.baseURL });
+            const { data } = await useApiService.get('init');
             configuration.value = data.config;
 
         } catch (error) {

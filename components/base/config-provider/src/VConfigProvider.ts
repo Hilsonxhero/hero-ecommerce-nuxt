@@ -2,11 +2,9 @@ import { defineComponent, renderSlot, watch } from 'vue'
 import { buildProps, definePropType } from '@/utils'
 import type { ExtractPropTypes } from 'vue'
 import type { ExperimentalFeatures } from '@/core/tokens'
-// import type { Language } from '@/core/locale'
-// import type { MessageConfigContext } from '@/components/base/message'
-
-
-// export const messageConfig: MessageConfigContext = {}
+import type { Language } from '@/core/locale'
+import type { MessageConfigContext } from '@/components/base/message'
+export const messageConfig: MessageConfigContext = {}
 
 export const configProviderProps = buildProps({
   // Controlling if the users want a11y features.
