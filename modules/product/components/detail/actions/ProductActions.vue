@@ -23,7 +23,7 @@
           @click="handleAnnouncement"
         >
           <nuxt-icon
-            class="text-gray-500 w-7 h-7"
+            class="text-blue-700 w-7 h-7"
             name="notification-bing"
           ></nuxt-icon>
         </base-button>
@@ -60,13 +60,13 @@
       <div class="mx-4">
         <base-button block variant="light" @click="copy(product_path)">
           <div class="flex items-center">
-            <div class="text-gray-500">
+            <div class="text-gray-500 ml-2">
               <span v-if="!copied">کپی کردن لینک</span>
               <span v-else>کپی شد!</span>
             </div>
             <span>
               <nuxt-icon
-                class="text-gray-500 mr-2"
+                class="text-gray-500"
                 name="clipboard-text"
               ></nuxt-icon>
             </span>
@@ -83,12 +83,9 @@
             :href="`https://wa.me/?text=${product_path}`"
             class="col-span-6 flex rounded-md items-center justify-center scm-whatsapp-bc p-2"
           >
-            <div class="scm-whatsapp-tc">واتساپ</div>
+            <div class="scm-whatsapp-tc ml-2">واتساپ</div>
             <div>
-              <nuxt-icon
-                class="scm-whatsapp-tc mr-2"
-                name="whatsapp"
-              ></nuxt-icon>
+              <nuxt-icon class="scm-whatsapp-tc" name="whatsapp"></nuxt-icon>
             </div>
           </a>
           <a
@@ -96,12 +93,9 @@
             :href="`https://t.me/share/url?text=${product_path}`"
             class="col-span-6 flex rounded-md items-center justify-center scm-telegram-bc p-2"
           >
-            <div class="scm-telegram-tc">تلگرام</div>
+            <div class="scm-telegram-tc ml-2">تلگرام</div>
             <div>
-              <nuxt-icon
-                class="scm-telegram-tc mr-2"
-                name="telegram"
-              ></nuxt-icon>
+              <nuxt-icon class="scm-telegram-tc" name="telegram"></nuxt-icon>
             </div>
           </a>
         </div>
@@ -115,7 +109,7 @@
 // @ts-nocheckk
 
 import { useRoute } from "vue-router";
-import { BaseMessage } from "@/components/base/message";
+import BaseMessage from "@/components/base/message";
 import { useClipboard } from "@vueuse/core";
 const props = defineProps({
   product: {},
@@ -141,30 +135,30 @@ const { text, copy, copied, isSupported } = useClipboard({ product_path });
 
 const handleLike = () => {
   props.product.is_wish = !props.product.is_wish;
-  let reqType = props.product.is_wish ? "post" : "delete";
-  // ApiService[reqType](`/wishes/${props.product.id}`).then(({ data }) => {
-  //   if (data.success) {
-  //     if (props.product.is_wish) {
-  //       BaseMessage({
-  //         message: "محصول به لیست علاقه مندی های شما اضافه شد",
-  //         type: "success",
-  //         duration: 4000,
-  //         center: true,
-  //         offset: 100,
-  //         "custom-class": "",
-  //       });
-  //     } else {
-  //       BaseMessage({
-  //         message: "محصول از لیست علاقه مندی های شما حذف شد",
-  //         type: "success",
-  //         duration: 4000,
-  //         center: true,
-  //         offset: 100,
-  //         "custom-class": "",
-  //       });
-  //     }
-  //   }
-  // });
+  let reqType = props.product.is_wish ? "post" : "remove";
+  useApiService[reqType](`wishes/${props.product.id}`).then((data) => {
+    if (data.success) {
+      if (props.product.is_wish) {
+        BaseMessage({
+          message: "محصول به لیست علاقه مندی های شما اضافه شد",
+          type: "success",
+          duration: 4000,
+          center: true,
+          offset: 100,
+          "custom-class": "",
+        });
+      } else {
+        BaseMessage({
+          message: "محصول از لیست علاقه مندی های شما حذف شد",
+          type: "success",
+          duration: 4000,
+          center: true,
+          offset: 100,
+          "custom-class": "",
+        });
+      }
+    }
+  });
 };
 
 const handleAnnouncement = () => {
@@ -172,37 +166,38 @@ const handleAnnouncement = () => {
     !current_variant.value.is_announcemented_promotion;
   let reqType = current_variant.value.is_announcemented_promotion
     ? "post"
-    : "delete";
+    : "remove";
   const data = {
     type: "promotion",
     via_sms: true,
     via_email: true,
   };
-  // ApiService[reqType](`/announcements/${current_variant.value.id}`, data).then(
-  //   ({ data }) => {
-  //     if (data.success) {
-  //       if (current_variant.value.is_announcemented_promotion) {
-  //         BaseMessage({
-  //           message: "محصول به لیست اطلاع رسانی  شگفت انگیز اضافه شد",
-  //           type: "success",
-  //           duration: 4000,
-  //           center: true,
-  //           offset: 100,
-  //           "custom-class": "",
-  //         });
-  //       } else {
-  //         BaseMessage({
-  //           message: "محصول از لیست اطلاع رسانی شگفت انگیز حذف شد",
-  //           type: "success",
-  //           duration: 4000,
-  //           center: true,
-  //           offset: 100,
-  //           "custom-class": "",
-  //         });
-  //       }
-  //     }
-  //   }
-  // );
+  useApiService[reqType](
+    `/announcements/${current_variant.value.id}`,
+    data
+  ).then((data) => {
+    if (data.success) {
+      if (current_variant.value.is_announcemented_promotion) {
+        BaseMessage({
+          message: "محصول به لیست اطلاع رسانی  شگفت انگیز اضافه شد",
+          type: "success",
+          duration: 4000,
+          center: true,
+          offset: 100,
+          "custom-class": "",
+        });
+      } else {
+        BaseMessage({
+          message: "محصول از لیست اطلاع رسانی شگفت انگیز حذف شد",
+          type: "success",
+          duration: 4000,
+          center: true,
+          offset: 100,
+          "custom-class": "",
+        });
+      }
+    }
+  });
 };
 
 const handleShare = () => {

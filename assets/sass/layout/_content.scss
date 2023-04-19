@@ -16,6 +16,10 @@
     url("@/assets/fonts/YekanBakh/YekanBakh-Medium.ttf") format("truetype");
 }
 
+* {
+  outline: 0 !important;
+}
+
 html,
 body {
   font-family: YekanBakh;
@@ -167,4 +171,75 @@ body {
 
 input[type="radio"]:checked + .c-circle-variant--color {
   box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 50%) !important;
+}
+
+// .product-reviews {
+//   &__collapse {
+//     .hx-collapse-item {
+//       .hx-collapse-item__wrap {
+//         position: relative;
+//         display: block !important;
+//         max-height: 3.5rem !important;
+//       }
+
+//       &.is-active {
+//         .hx-collapse-item__wrap {
+//           max-height: unset !important;
+//           .collapse-shadow {
+//             display: none;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }
+
+.scrollbar-hidden {
+  scrollbar-width: none;
+  scrollbar-color: transparent transparent;
+}
+
+.heading-color-gradiernt {
+  background-image: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.promotion-vector-rotate {
+  transform: translate3d(0px, 0px, 0px) scale3d(1, 1, 1) rotateX(0deg)
+    rotateY(0deg) rotateZ(50deg) skew(0deg);
+}
+
+.promotion-module {
+  &__section {
+    background-image: url("/media/promotion/06.jpg");
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .promotion-module {
+    &__head,
+    &__content {
+      background-image: linear-gradient(90deg, #d53369 0%, #daae51 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
+
+@include media-breakpoint-down(lg) {
+  .promotion-module {
+    &__head,
+    &__content {
+      color: #ffffff;
+    }
+  }
+}
+.invoice-container {
+  & .invoice-title-align {
+    margin-top: -1.3rem;
+  }
 }

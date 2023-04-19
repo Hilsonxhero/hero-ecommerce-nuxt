@@ -276,12 +276,12 @@
           <div class="col-span-12">
             <div v-for="(score, index) in models" :key="index">
               <div>{{ score.title }}</div>
-              <!-- <hx-stepper
+              <base-stepper
                 :max="100"
                 :show-tooltip="false"
                 v-model="scores[index].value"
                 :step="20"
-              /> -->
+              />
             </div>
 
             <div class="text-center text-gray-500 my-6 cursor-pointer">
@@ -295,7 +295,7 @@
             label="ویژگی مثبت"
             class="col-span-12"
           >
-            <!-- <base-input
+            <base-input
               v-bind="field"
               v-model="form.advantage"
               placeholder="ویژگی مثبت"
@@ -307,7 +307,7 @@
                   name="add"
                 ></nuxt-icon>
               </template>
-            </base-input> -->
+            </base-input>
 
             <div class="flex flex-wrap items-center">
               <base-badge
@@ -334,7 +334,7 @@
             label="ویژگی منفی"
             class="col-span-12"
           >
-            <!-- <hx-input
+            <base-input
               v-bind="field"
               v-model="form.disadvantage"
               placeholder="ویژگی منفی"
@@ -346,7 +346,7 @@
                   name="add"
                 ></nuxt-icon>
               </template>
-            </hx-input> -->
+            </base-input>
 
             <div class="flex flex-wrap items-center">
               <base-badge
@@ -379,11 +379,11 @@
             label="عنوان"
             class="col-span-12"
           >
-            <hx-input
+            <base-input
               v-bind="field"
               v-model="form.title"
               placeholder="عنوان نظر"
-            ></hx-input>
+            ></base-input>
           </base-form-item>
 
           <base-form-item
@@ -398,7 +398,7 @@
             ]"
             class="col-span-12"
           >
-            <hx-input
+            <base-input
               show-word-limit
               maxlength="100"
               class="h-20"
@@ -406,7 +406,7 @@
               type="textarea"
               v-model="form.content"
               placeholder="متن نظر"
-            ></hx-input>
+            ></base-input>
           </base-form-item>
         </base-form>
       </div>
@@ -492,25 +492,25 @@ watch(
 
 const fetchComments = () => {
   // loading.value = true;
-  // ApiService.query(`comments/product/${product_id.value}`, {
-  //   params: { page: pagination.value.page },
-  // })
-  //   .then(({ data }) => {
-  //     comments.value = data.comments;
-  //     comment_scores.value = data.scores;
-  //     models.value = data.models;
-  //     pager.value = data.pager;
-  //     // pagination.value.page = pager.value.current_page
-  //     pagination.value.total = pager.value.total;
-  //     pagination.value.rowsPerPage = pager.value.per_page;
-  //     models.value.map((score, index) => {
-  //       const key = score.id;
-  //       scores.value[index] = { id: score.id, value: 50 };
-  //     });
-  //     // loading.value = false;
-  //   })
-  //   .catch(() => {
-  //   });
+  useApiService
+    .get(`comments/product/${product_id.value}`, {
+      params: { page: pagination.value.page },
+    })
+    .then((data) => {
+      comments.value = data.comments;
+      comment_scores.value = data.scores;
+      models.value = data.models;
+      pager.value = data.pager;
+      // pagination.value.page = pager.value.current_page
+      pagination.value.total = pager.value.total;
+      pagination.value.rowsPerPage = pager.value.per_page;
+      models.value.map((score, index) => {
+        const key = score.id;
+        scores.value[index] = { id: score.id, value: 50 };
+      });
+      // loading.value = false;
+    })
+    .catch(() => {});
 };
 
 const create = async () => {
@@ -530,34 +530,34 @@ const create = async () => {
           scores: scores.value,
         };
 
-        // const { data } = await ApiService.post(
-        //   `comments/product/${product_id.value}`,
-        //   formData
-        // );
+        const data = await useApiService.post(
+          `comments/product/${product_id.value}`,
+          formData
+        );
 
-        // if (data.success) {
-        //   form.value.title = "";
-        //   form.value.content = "";
-        //   form.value.advantage = null;
-        //   form.value.disadvantage = null;
-        //   form.value.advantages = [];
-        //   form.value.disadvantages = [];
-        //   models.value.map((score, index) => {
-        //     const key = score.id;
-        //     scores.value[index] = { id: score.id, value: 50 };
-        //   });
+        if (data.success) {
+          form.value.title = "";
+          form.value.content = "";
+          form.value.advantage = null;
+          form.value.disadvantage = null;
+          form.value.advantages = [];
+          form.value.disadvantages = [];
+          models.value.map((score, index) => {
+            const key = score.id;
+            scores.value[index] = { id: score.id, value: 50 };
+          });
 
-        //   formRef.value.resetFields();
+          formRef.value.resetFields();
 
-        //   BaseMessage({
-        //     message: "نظر شما ثبت گردید و پس از بررسی نمایش داده می شود",
-        //     type: "success",
-        //     duration: 4000,
-        //     center: true,
-        //     offset: 100,
-        //     "custom-class": "",
-        //   });
-        // }
+          BaseMessage({
+            message: "نظر شما ثبت گردید و پس از بررسی نمایش داده می شود",
+            type: "success",
+            duration: 4000,
+            center: true,
+            offset: 100,
+            "custom-class": "",
+          });
+        }
         visiable_dialog.value = false;
         loader.value = false;
       } catch (error) {
@@ -609,14 +609,6 @@ const commentsCount = computed(() => {
 
 onMounted(() => {
   product_id.value = route.params.id;
-
-  // HxNotification.success({
-  //   title: "عملیات موفقیت آمیز",
-  //   message: "ایجاد محصول با موفقیت انجام شد",
-  //   showClose: true,
-  //   duration: 4000,
-  //   position: "bottom-center",
-  // });
 
   fetchComments();
 });

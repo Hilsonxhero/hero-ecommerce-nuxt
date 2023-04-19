@@ -13,8 +13,8 @@
               <div class="h-full">
                 <base-form :model="form" ref="formRef" class="h-full">
                   <div class="space-y-3 lg:space-y-3">
-                    <!-- <base-form-group label="پرسش خود را مطرح کنید">
-                      <hx-form-item
+                    <base-form-group label="پرسش خود را مطرح کنید">
+                      <base-form-item
                         v-slot="{ field }"
                         prop="content"
                         :rules="[
@@ -26,15 +26,15 @@
                         label="عنوان"
                         class="col-span-12"
                       >
-                        <hx-input
+                        <base-input
                           class="h-28"
                           type="textarea"
                           v-bind="field"
                           v-model="form.content"
                           placeholder="بنویسید .."
-                        ></hx-input>
-                      </hx-form-item>
-                    </base-form-group> -->
+                        ></base-input>
+                      </base-form-item>
+                    </base-form-group>
                     <div class="flex flex-col space-y-3 lg:space-y-4">
                       <base-button @click="create()" bock>ثبت پرسش</base-button>
                     </div>
@@ -86,7 +86,7 @@
                           <base-button icon variant="gray">
                             <nuxt-icon
                               class="text-gray-500"
-                              name="help-circle"
+                              name="message-question"
                             ></nuxt-icon>
                           </base-button>
                         </div>
@@ -270,7 +270,10 @@
           <div class="w-full flex col-span-12">
             <div class="flex items-center justify-center">
               <base-button icon variant="gray">
-                <nuxt-icon class="text-gray-500" name="help-circle"></nuxt-icon>
+                <nuxt-icon
+                  class="text-gray-500"
+                  name="message-question"
+                ></nuxt-icon>
               </base-button>
             </div>
             <section
@@ -292,7 +295,7 @@
             <div></div>
           </div>
 
-          <!-- <hx-form-item
+          <base-form-item
             v-slot="{ field }"
             label="متن پاسخ"
             prop="content"
@@ -304,7 +307,7 @@
             ]"
             class="col-span-12"
           >
-            <hx-input
+            <base-input
               show-word-limit
               maxlength="500"
               class="h-32"
@@ -312,8 +315,8 @@
               type="textarea"
               v-model="answer_form.content"
               placeholder="متن پاسخ"
-            ></hx-input>
-          </hx-form-item> -->
+            ></base-input>
+          </base-form-item>
         </base-form>
       </div>
       <template #footer>
@@ -330,7 +333,7 @@
 <script setup lang="ts">
 // @ts-nocheckk
 
-// import { HxStepper } from "@/components/base/stepper";
+import { BaseForm, BaseFormItem, BaseFormGroup } from "@/components/base/form";
 
 import BaseMessage from "@/components/base/message";
 
@@ -399,19 +402,19 @@ watch(
 
 const fetchQuestions = () => {
   // loading.value = true;
-  // ApiService.query(`questions/product/${product_id.value}`, {
-  //   params: { page: pagination.value.page },
-  // })
-  //   .then(({ data }) => {
-  //     questions.value = data.questions;
-  //     pager.value = data.pager;
-  //     // pagination.value.page = pager.value.current_page
-  //     pagination.value.total = pager.value.total;
-  //     pagination.value.rowsPerPage = pager.value.per_page;
-  //     // loading.value = false;
-  //   })
-  //   .catch(() => {
-  //   });
+  useApiService
+    .get(`questions/product/${product_id.value}`, {
+      params: { page: pagination.value.page },
+    })
+    .then((data) => {
+      questions.value = data.questions;
+      pager.value = data.pager;
+      // pagination.value.page = pager.value.current_page
+      pagination.value.total = pager.value.total;
+      pagination.value.rowsPerPage = pager.value.per_page;
+      // loading.value = false;
+    })
+    .catch(() => {});
 };
 
 const create = async () => {
@@ -426,10 +429,10 @@ const create = async () => {
           is_anonymous: form.value.is_anonymous,
         };
 
-        // const { data } = await ApiService.post(
-        //   `questions/product/${product_id.value}`,
-        //   formData
-        // );
+        const data = await useApiService.post(
+          `questions/product/${product_id.value}`,
+          formData
+        );
 
         if (data.success) {
           form.value.content = "";
@@ -468,27 +471,27 @@ const submitAnswer = async () => {
           product_question_id: relpy_question.value.id,
         };
 
-        // const { data } = await ApiService.post(
-        //   `questions/product/${product_id.value}`,
-        //   formData
-        // );
+        const data = await useApiService.post(
+          `questions/product/${product_id.value}`,
+          formData
+        );
 
-        // if (data.success) {
-        //   visiable_answer_dialog.value = false;
+        if (data.success) {
+          visiable_answer_dialog.value = false;
 
-        //   answer_form.value.content = "";
+          answer_form.value.content = "";
 
-        //   answerFormRef.value.resetFields();
+          answerFormRef.value.resetFields();
 
-        //   BaseMessage({
-        //     message: "پاسخ شما ثبت گردید و پس از بررسی نمایش داده می شود",
-        //     type: "success",
-        //     duration: 4000,
-        //     center: true,
-        //     offset: 100,
-        //     "custom-class": "",
-        //   });
-        // }
+          BaseMessage({
+            message: "پاسخ شما ثبت گردید و پس از بررسی نمایش داده می شود",
+            type: "success",
+            duration: 4000,
+            center: true,
+            offset: 100,
+            "custom-class": "",
+          });
+        }
         loader.value = false;
       } catch (error) {
         console.error(error);

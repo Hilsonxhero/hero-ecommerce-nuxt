@@ -22,7 +22,7 @@
           v-if="review.items"
           class="relative pb-4 pt-4 px-4 text-justify leading-8 lg:pt-0 lg:leading-10 lg:w-[100%]"
         >
-          <base-collapse class="product-reviews__collapse">
+          <base-collapse accordion class="product-reviews__collapse">
             <base-collapse-item
               :data-index="reviewItem.id"
               :title="reviewItem.title"
@@ -31,10 +31,10 @@
             >
               <div v-html="reviewItem.content"></div>
 
-              <div
+              <!-- <div
                 class="collapse-shadow absolute -bottom-2 top-4 w-full bg-gradient-to-t from-[rgba(255,255,255,1)] to-[rgba(255,255,255,0.2)]"
                 style=""
-              ></div>
+              ></div> -->
             </base-collapse-item>
           </base-collapse>
         </section>
@@ -52,7 +52,6 @@ const visiable_index = ref(null);
 const props = defineProps({
   review: {},
 });
-const activeNames = ref([]);
 </script>
 
 <style scoped>
