@@ -1,4 +1,4 @@
-// @ts-nocheck
+
 import type { SliderProps } from '@/components/base/stepper'
 import type { ComputedRef, InjectionKey, Ref, ToRefs } from 'vue'
 

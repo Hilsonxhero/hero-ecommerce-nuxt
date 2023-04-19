@@ -223,7 +223,7 @@
                 </template>
                 <div>
                   <div class="my-2">
-                    <!-- <hx-pagination
+                    <base-pagination
                       v-model:current-page="pagination.page"
                       @current-change="currentPageChange"
                       :page-size="pagination.rowsPerPage"
@@ -232,7 +232,7 @@
                       :hide-on-single-page="true"
                       background
                     >
-                    </hx-pagination> -->
+                    </base-pagination>
                   </div>
                 </div>
               </div>

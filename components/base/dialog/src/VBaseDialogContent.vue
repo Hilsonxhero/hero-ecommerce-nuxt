@@ -50,7 +50,7 @@
 import { computed, inject } from "vue";
 // import { ElIcon } from '@/core/components/icon'
 import { FOCUS_TRAP_INJECTION_KEY } from "@/components/base/focus-trap";
-// import { useDraggable, useLocale } from "@/core/hooks";
+
 import { composeRefs } from "@/utils";
 import { dialogInjectionKey } from "@/core/tokens";
 import { dialogContentEmits, dialogContentProps } from "./VDialogContent";

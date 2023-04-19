@@ -35,12 +35,12 @@
         <span v-if="$slots.prefix || prefixIcon" :class="nsInput.e('prefix')">
           <span :class="nsInput.e('prefix-inner')">
             <slot name="prefix" />
-            <hx-icon
+            <nuxt-icon
               v-if="prefixIcon"
               class=""
               :class="nsInput.e('icon')"
-              :icon="prefixIcon"
-            ></hx-icon>
+              :name="prefixIcon"
+            ></nuxt-icon>
           </span>
         </span>
 
@@ -76,31 +76,31 @@
               v-if="!showClear || !showPwdVisible || !isWordLimitVisible"
             >
               <slot name="suffix" />
-              <hx-icon
+              <nuxt-icon
                 v-if="suffixIcon"
                 class=""
                 :class="nsInput.e('icon')"
-                :icon="suffixIcon"
-              ></hx-icon>
+                :name="suffixIcon"
+              ></nuxt-icon>
             </template>
 
             <!-- <hx-icon @mousedown.prevent="NOOP" v-if="showClear" class=""
               :class="[nsInput.e('icon'), nsInput.e('clear')]" icon="clear"></hx-icon> -->
 
-            <hx-icon
+            <nuxt-icon
               @click="handlePasswordVisible"
               v-if="showPwdVisible"
               :class="[nsInput.e('icon'), nsInput.e('password')]"
               class=""
-              :icon="passwordIcon"
-            ></hx-icon>
+              :name="passwordIcon"
+            ></nuxt-icon>
 
             <span v-if="isWordLimitVisible" :class="nsInput.e('count')">
               <span :class="nsInput.e('count-inner')">
                 {{ textLength }} / {{ attrs.maxlength }}
               </span>
             </span>
-            <hx-icon
+            <nuxt-icon
               v-if="validateState && needStatusIcon"
               class=""
               :class="[
@@ -108,8 +108,8 @@
                 nsInput.e('validateIcon'),
                 nsInput.is('loading', validateState === 'validating'),
               ]"
-              icon="validate"
-            ></hx-icon>
+              name="validate"
+            ></nuxt-icon>
           </span>
         </span>
       </div>
