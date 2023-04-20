@@ -31,17 +31,17 @@
       @focus="onFocus(true)"
       @blur="quickPrevFocus = false"
     >
-      <hx-icon
+      <base-icon
         icon="arrow-right"
         class="w-6 h-6"
         v-if="quickPrevHover || quickPrevFocus"
-      ></hx-icon>
+      ></base-icon>
 
-      <hx-icon
+      <base-icon
         icon="dots-horizontal"
         class="w-6 h-6 text-gray-400"
         v-else
-      ></hx-icon>
+      ></base-icon>
     </li> -->
     <li
       v-for="pager in pagers"
@@ -70,17 +70,17 @@
       @focus="onFocus()"
       @blur="quickNextFocus = false"
     >
-      <hx-icon
+      <base-icon
         icon="arrow-left"
         class="w-6 h-6"
         v-if="quickNextHover || quickNextFocus"
-      ></hx-icon>
+      ></base-icon>
 
-      <hx-icon
+      <base-icon
         icon="dots-horizontal"
         class="w-6 h-6 text-gray-400"
         v-else
-      ></hx-icon>
+      ></base-icon>
     </li> -->
     <li
       v-if="pageCount > 1"

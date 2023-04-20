@@ -6,7 +6,9 @@ export default defineNuxtConfig({
         '@pinia/nuxt',
         'nuxt-swiper',
         'nuxt-icons',
-        '~/modules/product/module'
+        '~/modules/product/module',
+        '~/modules/user/module',
+        '~/modules/checkout/module',
     ],
 
     css: ["@/assets/sass/main.scss", "@/assets/css/tailwind.css"],

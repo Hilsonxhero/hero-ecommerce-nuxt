@@ -30,7 +30,6 @@
 </template>
 
 <script setup lang="ts">
-import { useCounterStore } from "@/stores/index";
 import { storeToRefs } from "pinia";
 import TopSlider from "@/modules/web/components/TopSlider.vue";
 import Categories from "@/modules/web/components/Categories.vue";
@@ -40,8 +39,7 @@ import QuadrupleBanner from "@/modules/web/components/banners/QuadrupleBanner.vu
 import TripleBanner from "@/modules/web/components/banners/TripleBanner.vue";
 import Articles from "@/modules/article/components/Articles.vue";
 import Recommendations from "@/modules/web/components/recommendation/Recommendations.vue";
-const store = useCounterStore();
-const { counter } = storeToRefs(store);
+
 const init = ref();
 const config = useRuntimeConfig();
 const recommendations = ref([]);

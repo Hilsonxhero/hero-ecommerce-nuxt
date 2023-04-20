@@ -18,9 +18,11 @@ type UseFetchOptions = {
 
 export const useApiService = (request: string, opts?: UseFetchOptions): Promise<void> | void => {
     const config = useRuntimeConfig()
+    const headers = useRequestHeaders(['cookie'])
     const apiFetch = $fetch.create({
         baseURL: config.public.baseURL,
         credentials: 'include',
+        headers,
         onResponse({ request, response, options }) {
             // Process the response data
         },
@@ -43,7 +45,7 @@ export const get = (request: string, opts?: UseFetchOptions): Promise<void> | vo
     return useApiService(request, opts)
 };
 
-export const post = (request: string, params: SearchParameters, opts?: UseFetchOptions): Promise<void> | void => {
+export const post = (request: string, params?: SearchParameters, opts?: UseFetchOptions): Promise<void> | void => {
     return useApiService(request, { ...opts, method: "POST", body: params })
 };
 

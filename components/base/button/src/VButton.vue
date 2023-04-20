@@ -18,7 +18,7 @@
   >
     <template v-if="loading">
       <span class="hx-button__content">
-        <svg class="svg-loader__circular" viewBox="-10, -10, 50, 50">
+        <svg class="svg-loader__circular w-6 h-6" viewBox="-10, -10, 50, 50">
           <path
             class="svg-loader__path text-white"
             d="

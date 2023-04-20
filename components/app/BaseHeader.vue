@@ -48,11 +48,19 @@
             <div class="flex items-center">
               <app-base-search></app-base-search>
               <div class="hidden lg:flex">
-                <BaseButton class="mr-2" variant="light">
+                <BaseButton
+                  @click="navigateToProfile"
+                  class="mr-2"
+                  variant="light"
+                >
                   <nuxt-icon name="user-bulk"></nuxt-icon>
                 </BaseButton>
 
-                <BaseButton class="mr-2" variant="light">
+                <BaseButton
+                  @click="navigateToCart"
+                  class="mr-2"
+                  variant="light"
+                >
                   <nuxt-icon name="bag-bulk"></nuxt-icon>
                 </BaseButton>
               </div>
@@ -83,6 +91,7 @@ const menus = ref([
 const navRef = ref(null);
 const active = ref(false);
 const visible_search = ref(false);
+const router = useRouter();
 
 const handleCloseSearch = () => {
   visible_search.value = false;
@@ -94,6 +103,13 @@ const showNavHandler = () => {
 onClickOutside(navRef, (event) => {
   active.value = false;
 });
+
+const navigateToProfile = () => {
+  router.push({ name: "auth" });
+};
+const navigateToCart = () => {
+  router.push({ name: "checkout-cart" });
+};
 </script>
 
 <style lang="scss" scoped>

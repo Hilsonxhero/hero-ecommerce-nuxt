@@ -1,4 +1,4 @@
-// @ts-nocheckk
+// @ts-nocheck
 import { ref, computed } from "vue";
 import { defineStore } from "pinia";
 import { useCartStore } from "@/modules/checkout/store";
@@ -25,12 +25,11 @@ export const useUserStore = defineStore("user", () => {
         if (!checked.value)
             try {
                 const { data } = await useApiService.get(`user/init`);
-                user.value = data.data?.user;
-                isLoggedIn.value = data.data?.is_logged_in;
+                user.value = data.user;
+                isLoggedIn.value = data?.is_logged_in;
                 checked.value = true;
-
-
                 cart.fetchPreviewCart(data?.cart);
+                return data
             } catch (error) {
                 return error;
             }

@@ -4,8 +4,8 @@ import type { Nuxt } from '@nuxt/schema'
 
 export default defineNuxtModule({
     meta: {
-        name: 'product-module',
-        configKey: 'product-module',
+        name: 'user-module',
+        configKey: 'user-module',
     },
 
     setup(options: any, nuxt: Nuxt) {
@@ -25,15 +25,18 @@ export default defineNuxtModule({
 
 
         nuxt.hook('pages:extend', (pages) => {
-            pages.push({
-                name: 'products-index',
-                path: '/products',
-                file: resolve(__dirname, './pages/products/index.vue')
-            }, {
-                name: 'products-show',
-                path: '/products/:id/:slug',
-                file: resolve(__dirname, './pages/products/[id].vue')
-            })
+            pages.push(
+                {
+                    name: 'auth',
+                    path: '/auth',
+                    file: resolve(__dirname, './pages/auth.vue')
+                },
+                {
+                    path: "/user/profile",
+                    name: "user profile index",
+                    file: resolve(__dirname, './pages/profile/profile.vue')
+                },
+            )
         })
 
         // Pinia store modules are auto imported

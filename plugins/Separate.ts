@@ -2,6 +2,7 @@
 
 export default defineNuxtPlugin((nuxtApp) => {
 
+
     nuxtApp.vueApp.config.globalProperties.$filters = {
         twoDigits(value) {
             if (value.toString().length <= 1) {

@@ -1,19 +1,19 @@
 <template>
   <span :class="ns.e('sizes')">
-    <hx-select
+    <base-select
       :model-value="innerPageSize"
       :disabled="disabled"
       :popper-class="popperClass"
       :size="size"
       @change="handleChange"
     >
-      <hx-option
+      <base-option
         v-for="item in innerPageSizes"
         :key="item"
         :value="item"
         :label="item + t('el.pagination.pagesize')"
       />
-    </hx-select>
+    </base-select>
   </span>
 </template>
 

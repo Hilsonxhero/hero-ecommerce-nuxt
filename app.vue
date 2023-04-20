@@ -14,6 +14,6 @@ const store = useCommonStore();
 const userStore = useUserStore();
 
 onMounted(async () => {
-  await Promise.all([store.fetchConfig(), userStore.init()]);
+  await Promise.all([store.fetchConfig()]);
 });
 </script>
