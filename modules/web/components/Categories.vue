@@ -18,7 +18,7 @@
                 to=""
                 class="h-16 w-16 rounded-md text-white bg-gray-100 flex items-center justify-center"
               >
-                <!-- <hx-icon class="w-16 h-1w-16" icon="mobile-c"></hx-icon> -->
+                <!-- <nuxt-icon class="w-16 h-1w-16" name="mobile-c"></nuxt-icon> -->
                 <img class="p-1" :src="category?.media?.thumb" alt="" />
               </router-link>
               <h3

@@ -33,7 +33,7 @@ export default defineNuxtModule({
                 },
                 {
                     path: "/user/profile",
-                    name: "user profile index",
+                    name: "user-profile-index",
                     file: resolve(__dirname, './pages/profile/profile.vue')
                 },
             )

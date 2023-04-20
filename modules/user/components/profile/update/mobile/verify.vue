@@ -1,13 +1,8 @@
 <template>
   <div>
-    <base-form
-      :model="form"
-      ref="formRef"
-      class="h-full space-y-6"
-      @submit="update"
-    >
+    <base-form :model="form" ref="formRef" class="h-full space-y-6">
       <div class="flex items-center">
-        <base-otp :length="5" v-model="code"></base-otp>
+        <base-otp :length="5" v-model="form.code"></base-otp>
         <div mode="out-in" class="flex flex-col justify-center mr-6 w-56">
           <Countdown v-if="!resend" :date="ttl_time" @finish="resend = true" />
           <div
@@ -20,7 +15,7 @@
         </div>
       </div>
       <div class="text-right mt-4">
-        <base-button type="submit" :loading="loader">ثبت</base-button>
+        <base-button @click="update" :loading="loader">ثبت</base-button>
         <base-button variant="light" class="mr-1" @click="cancel"
           >لغو</base-button
         >
@@ -63,7 +58,7 @@ const update = async () => {
   };
   try {
     loader.value = true;
-    const { data } = await useApiService.post(
+    const data = await useApiService.post(
       "user/profile/update/mobile/verify",
       formData
     );
@@ -94,11 +89,6 @@ const handleresendCode = async () => {
     loader.value = false;
   }
 };
-
-watchEffect(() => {
-  if (requestForm.value) {
-  }
-});
 
 const cancel = () => {
   emit("close", true);

@@ -84,8 +84,8 @@
               ></nuxt-icon>
             </template>
 
-            <!-- <hx-icon @mousedown.prevent="NOOP" v-if="showClear" class=""
-              :class="[nsInput.e('icon'), nsInput.e('clear')]" icon="clear"></hx-icon> -->
+            <!-- <nuxt-icon @mousedown.prevent="NOOP" v-if="showClear" class=""
+              :class="[nsInput.e('icon'), nsInput.e('clear')]" icon="clear"></nuxt-icon> -->
 
             <nuxt-icon
               @click="handlePasswordVisible"

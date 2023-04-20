@@ -16,11 +16,7 @@
       </div>
     </div>
 
-    <base-dialog
-      :show="active"
-      title="ویرایش اطلاعات کاربری"
-      @close="active = !active"
-    >
+    <base-dialog v-model="active" title="ویرایش اطلاعات کاربری">
       <template v-if="!show">
         <Request v-model="form" @close="cancel" />
       </template>
@@ -52,13 +48,13 @@ const cancel = () => {
 };
 const update = () => {
   active.value = false;
-  // HxNotification.success({
-  //   title: "ویرایش مشخصات کاربری",
-  //   message: "عملیات ویرایش با موفقیت انجام شد",
-  //   showClose: true,
-  //   duration: 3000,
-  //   position: "bottom-center",
-  // });
+
+  BaseMessage({
+    message: "عملیات ویرایش با موفقیت انجام شد",
+    type: "success",
+    duration: 4000,
+    center: true,
+  });
   store
     .personalInfo()
     .then(() => {})

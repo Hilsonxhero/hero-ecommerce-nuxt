@@ -14,7 +14,7 @@ export const useUserStore = defineStore("user", () => {
     const personalInfo = async () => {
         try {
             const { data } = await useApiService.get(`user/profile/personal-info`);
-            user.value = data.data?.user;
+            user.value = data?.user;
         } catch (error) {
             return error;
         }

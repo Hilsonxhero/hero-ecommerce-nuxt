@@ -16,41 +16,31 @@
       </div>
     </div>
 
-    <hx-modal
-      :show="active"
-      title="ویرایش اطلاعات کاربری"
-      @close="active = !active"
-    >
-      <base-form ref="form" class="h-full space-y-6" @submit="update">
-        <base-form-group label="نام کاربری">
-          <base-form-item
-            mode="passive"
-            prop="username"
-            v-slot="{ field }"
-            :rules="[
-              {
-                required: true,
-                message: ' متن پرسش الزامی می باشد',
-              },
-            ]"
-            label="نام کاربری"
-          >
-            <base-input
-              v-bind="field"
-              v-model="username"
-              placeholder="نام کاربری را وارد کنید"
-            ></base-input>
-          </base-form-item>
-          <div class="invalid-feedback d-block"></div>
-        </base-form-group>
+    <base-dialog v-model="active" title="ویرایش اطلاعات کاربری">
+      <base-form :model="form" ref="formRef" class="h-full space-y-6">
+        <base-form-item
+          prop="username"
+          :rules="[
+            {
+              required: true,
+              message: ' متن پرسش الزامی می باشد',
+            },
+          ]"
+          label="نام کاربری"
+        >
+          <base-input
+            v-model="form.username"
+            placeholder="نام کاربری را وارد کنید"
+          ></base-input>
+        </base-form-item>
         <div class="text-right mt-4">
-          <base-button type="submit" :loading="loader">ثبت</base-button>
-          <bae-button variant="light" class="mr-1" @click="active = false"
-            >لغو</bae-button
+          <base-button @click="update" :loading="loader">ثبت</base-button>
+          <base-button variant="light" class="mr-1" @click="active = false"
+            >لغو</base-button
           >
         </div>
       </base-form>
-    </hx-modal>
+    </base-dialog>
   </div>
 </template>
 
@@ -64,33 +54,35 @@ import BaseMessage from "@/components/base/message";
 const emit = defineEmits(["update", "close"]);
 const store = useUserStore();
 const { user } = storeToRefs(store);
-const username = ref<any>(store.user.username);
+
 const loader = ref<boolean>(false);
-const form = ref(null);
+const formRef = ref(null);
+const form = ref({
+  username: store.user.username,
+});
 const active = ref<boolean>(false);
 const update = async () => {
   const data = {
-    username: username.value,
+    username: form.value.username,
   };
   try {
     loader.value = true;
     await useApiService.post("user/profile/update/username", data);
     loader.value = false;
     active.value = false;
-    // HxNotification.success({
-    //   title: "ویرایش مشخصات کاربری",
-    //   message: "عملیات ویرایش با موفقیت انجام شد",
-    //   showClose: true,
-    //   duration: 3000,
-    //   position: "bottom-center",
-    // });
+
+    BaseMessage({
+      message: "عملیات ویرایش با موفقیت انجام شد",
+      type: "success",
+      duration: 4000,
+      center: true,
+    });
     store
       .personalInfo()
       .then(() => {})
       .catch((e) => {});
   } catch (error) {
     loader.value = false;
-    console.error;
   }
 };
 

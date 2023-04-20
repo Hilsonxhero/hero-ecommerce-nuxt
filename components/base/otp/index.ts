@@ -1,4 +1,4 @@
-import Otp from "./src/otp.vue";
+import Otp from "./src/VBaseOtp.vue";
 
 export const BaseOtp = Otp;
 

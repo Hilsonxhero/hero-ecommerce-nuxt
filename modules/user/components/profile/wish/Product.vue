@@ -15,7 +15,7 @@
             variant="danger"
             @click="handleDeleteWish($event, wish)"
           >
-            <hx-icon class="w-4 h-4 text-gray-500" icon="trash"></hx-icon>
+            <nuxt-icon class="w-4 h-4 text-gray-500" name="trash"></nuxt-icon>
           </hx-button>
         </div>
       </div>

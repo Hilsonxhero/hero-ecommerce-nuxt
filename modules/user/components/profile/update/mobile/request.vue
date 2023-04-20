@@ -1,27 +1,21 @@
 <template>
   <div>
     <base-form :model="form" ref="formRef" class="h-full space-y-6">
-      <base-form-group label="شماره موبایل">
-        <base-form-item
-          mode="passive"
-          prop="phone"
-          v-slot="{ field }"
-          :rules="[
-            {
-              required: true,
-              message: ' متن پرسش الزامی می باشد',
-            },
-          ]"
-          label="شماره موبایل"
-        >
-          <base-input
-            v-bind="field"
-            v-model="form.phone"
-            placeholder="شماره موبایل را وارد کنید"
-          ></base-input>
-        </base-form-item>
-        <div class="invalid-feedback d-block"></div>
-      </base-form-group>
+      <base-form-item
+        prop="phone"
+        :rules="[
+          {
+            required: true,
+            message: ' متن پرسش الزامی می باشد',
+          },
+        ]"
+        label="شماره موبایل"
+      >
+        <base-input
+          v-model="form.phone"
+          placeholder="شماره موبایل را وارد کنید"
+        ></base-input>
+      </base-form-item>
       <div class="text-right mt-4">
         <base-button @click="request" :loading="loader">ثبت</base-button>
         <base-button variant="light" class="mr-1" @click="cancel"
@@ -58,10 +52,12 @@ const request = async () => {
   };
   loader.value = true;
   try {
-    const { data } = await useApiService.post(
+    const data = await useApiService.post(
       "user/profile/update/mobile/request",
       formData
     );
+    console.log("data", data);
+
     // resend.value = false;
     loader.value = false;
     if (data.success) {
@@ -72,14 +68,10 @@ const request = async () => {
   } catch ({ response }) {
     loader.value = false;
     error.value = response.data.data;
-    formRef.value.setErrors(error.value);
   }
 };
 
-watchEffect(() => {
-  if (formRef.value) {
-  }
-});
+watchEffect(() => {});
 
 const cancel = () => {
   emit("close", true);

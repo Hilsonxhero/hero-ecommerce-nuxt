@@ -15,78 +15,62 @@
       </div>
     </div>
 
-    <base-dialog
-      :show="active"
-      title="ویرایش اطلاعات کاربری"
-      @close="active = !active"
-    >
-      <base-form ref="form" class="h-full space-y-6" @submit="update">
+    <base-dialog v-model="active" title="ویرایش اطلاعات کاربری">
+      <base-form :model="form" ref="formRef" class="h-full space-y-6">
         <template v-if="user.has_password">
-          <base-form-group label="رمز عبور فعلی">
-            <base-form-item
-              prop="current_password"
-              v-slot="{ field }"
-              :rules="[
-                {
-                  required: true,
-                  message: ' متن پرسش الزامی می باشد',
-                },
-              ]"
-              label="رمز عبور فعلی"
-            >
-              <base-input
-                v-bind="field"
-                v-model="current_password"
-                placeholder="رمز عبور فعلی را وارد کنید"
-              ></base-input>
-            </base-form-item>
-            <div class="invalid-feedback d-block"></div>
-          </base-form-group>
+          <base-form-item
+            prop="current_password"
+            :rules="[
+              {
+                required: true,
+                message: ' متن پرسش الزامی می باشد',
+              },
+            ]"
+            label="رمز عبور فعلی"
+          >
+            <base-input
+              type="password"
+              v-model="form.current_password"
+              placeholder="رمز عبور فعلی را وارد کنید"
+            ></base-input>
+          </base-form-item>
         </template>
 
-        <base-form-group label="رمز عبور جدید">
-          <base-form-item
-            prop="password"
-            v-slot="{ field }"
-            :rules="[
-              {
-                required: true,
-                message: ' متن پرسش الزامی می باشد',
-              },
-            ]"
-            label="رمز عبور جدید"
-          >
-            <base-input
-              v-bind="field"
-              v-model="password"
-              placeholder="رمز عبور جدید را وارد کنید"
-            ></base-input>
-          </base-form-item>
-          <div class="invalid-feedback d-block"></div>
-        </base-form-group>
+        <base-form-item
+          prop="password"
+          :rules="[
+            {
+              required: true,
+              message: ' متن پرسش الزامی می باشد',
+            },
+          ]"
+          label="رمز عبور جدید"
+        >
+          <base-input
+            type="password"
+            v-model="form.password"
+            placeholder="رمز عبور جدید را وارد کنید"
+          ></base-input>
+        </base-form-item>
 
-        <base-form-group label="تکرار رمز عبور جدید">
-          <base-form-item
-            prop="confirmation"
-            v-slot="{ field }"
-            :rules="[
-              {
-                required: true,
-                message: ' متن پرسش الزامی می باشد',
-              },
-            ]"
-            label="تکرار رمز عبور جدید"
-          >
-            <base-input
-              v-bind="field"
-              v-model="password_confirmation"
-              placeholder="تکرار رمز عبور را وارد کنید"
-            ></base-input>
-          </base-form-item>
-          <div class="invalid-feedback d-block"></div>
-        </base-form-group>
+        <base-form-item
+          prop="password_confirmation"
+          :rules="[
+            {
+              required: true,
+              message: ' متن پرسش الزامی می باشد',
+            },
+          ]"
+          label="تکرار رمز عبور جدید"
+        >
+          <base-input
+            type="password"
+            v-model="form.password_confirmation"
+            placeholder="تکرار رمز عبور را وارد کنید"
+          ></base-input>
+        </base-form-item>
         <div class="text-right mt-4">
-          <base-button type="submit" :loading="loader">ثبت</base-button>
+          <base-button @click="update" :loading="loader">ثبت</base-button>
           <base-button variant="light" class="mr-1" @click="active = false"
             >لغو</base-button
           >
@@ -98,7 +82,7 @@
 
 <script setup lang="ts">
 // @ts-nocheckk
-import { ref, watchEffect } from "vue";
+
 import { useUserStore } from "@/modules/user/store";
 import { BaseForm, BaseFormItem, BaseFormGroup } from "@/components/base/form";
 import { storeToRefs } from "pinia";
@@ -106,36 +90,38 @@ import BaseMessage from "@/components/base/message";
 const emit = defineEmits(["update", "close"]);
 const store = useUserStore();
 const { user } = storeToRefs(store);
-const current_password = ref<any>(null);
-const password = ref<any>(null);
-const password_confirmation = ref<any>(null);
+
 const loader = ref<boolean>(false);
-const form = ref(null);
+const formRef = ref(null);
+const form = ref({
+  current_password: "",
+  password: "",
+  password_confirmation: "",
+});
 const active = ref<boolean>(false);
 const update = async () => {
-  const data = {
-    current_password: current_password.value,
-    password: password.value,
-    password_confirmation: password_confirmation.value,
+  const formData = {
+    current_password: form.value.current_password,
+    password: form.value.password,
+    password_confirmation: form.value.password_confirmation,
   };
   try {
     loader.value = true;
-    const { data: response } = await useApiService.post(
+    const data = await useApiService.post(
       "user/profile/update/password",
-      data
+      formData
     );
     loader.value = false;
     active.value = false;
-    current_password.value = "";
-    password.value = "";
-    password_confirmation.value = "";
-    // HxNotification.success({
-    //   title: "ویرایش مشخصات کاربری",
-    //   message: "عملیات ویرایش با موفقیت انجام شد",
-    //   showClose: true,
-    //   duration: 3000,
-    //   position: "bottom-center",
-    // });
+    form.value.current_password = "";
+    form.value.password = "";
+    form.value.password_confirmation = "";
+    BaseMessage({
+      message: "عملیات ویرایش با موفقیت انجام شد",
+      type: "success",
+      duration: 4000,
+      center: true,
+    });
     store
       .personalInfo()
       .then(() => {})
@@ -145,11 +131,6 @@ const update = async () => {
     // form.value.setErrors(response.data.data);
   }
 };
-
-watchEffect(() => {
-  if (form.value) {
-  }
-});
 
 const openEditUserInfoModal = () => {
   active.value = true;
