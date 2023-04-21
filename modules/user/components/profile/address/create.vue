@@ -19,6 +19,7 @@
           class="col-span-12"
         >
           <base-input
+            class="h-[8rem] resize-none"
             type="textarea"
             v-model="form.address"
             placeholder=" نشانی پستی را وارد کنید"
@@ -190,7 +191,7 @@ watch(
 );
 
 onMounted(async () => {
-  const { data } = await useApiService.get("states");
+  const data = await useApiService.get("states");
   states.value = data.data;
 });
 </script>

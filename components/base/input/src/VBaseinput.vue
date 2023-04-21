@@ -125,7 +125,7 @@
       <textarea
         :id="inputId"
         ref="textarea"
-        :class="nsTextarea.e('inner')"
+        :class="[nsTextarea.e('inner'), inputClass]"
         v-bind="attrs"
         :tabindex="tabindex"
         :disabled="inputDisabled"

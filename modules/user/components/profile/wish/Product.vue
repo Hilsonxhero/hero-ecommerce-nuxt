@@ -1,7 +1,7 @@
 <template>
-  <router-link
+  <nuxt-link
     :to="{
-      name: 'product detail',
+      name: 'products-show',
       params: { id: wish?.product.id, slug: wish?.product.slug },
     }"
   >
@@ -10,13 +10,13 @@
     >
       <div class="flex justify-end">
         <div class="">
-          <hx-button
+          <base-button
             icon
             variant="danger"
             @click="handleDeleteWish($event, wish)"
           >
             <nuxt-icon class="w-4 h-4 text-gray-500" name="trash"></nuxt-icon>
-          </hx-button>
+          </base-button>
         </div>
       </div>
       <div class="relative flex items-center">
@@ -93,7 +93,7 @@
         </div>
       </div>
     </section>
-  </router-link>
+  </nuxt-link>
 </template>
 
 <script setup lang="ts">
@@ -107,7 +107,7 @@ const emits = defineEmits(["delete"]);
 
 const handleDeleteWish = (event, item) => {
   event.preventDefault();
-  useApiService.remove(`user/profile/wishes/${item.id}`).then(({ data }) => {
+  useApiService.remove(`user/profile/wishes/${item.id}`).then((data) => {
     emits("delete", props.index);
   });
 };

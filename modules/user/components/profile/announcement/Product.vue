@@ -1,7 +1,7 @@
 <template>
-  <router-link
+  <nuxt-link
     :to="{
-      name: 'product detail',
+      name: 'products-show',
       params: {
         id: announcement?.product.id,
         slug: announcement?.product.slug,
@@ -90,12 +90,10 @@
         </div>
       </div>
     </section>
-  </router-link>
+  </nuxt-link>
 </template>
 
 <script setup lang="ts">
-// @ts-nocheck
-
 const props = defineProps({
   announcement: {},
   index: {},
@@ -104,11 +102,9 @@ const emits = defineEmits(["delete"]);
 
 const handleDeleteannouncement = (event, item) => {
   event.preventDefault();
-  useApiService
-    .remove(`user/profile/announcements/${item.id}`)
-    .then(({ data }) => {
-      emits("delete", props.index);
-    });
+  useApiService.remove(`user/profile/announcements/${item.id}`).then((data) => {
+    emits("delete", props.index);
+  });
 };
 </script>
 

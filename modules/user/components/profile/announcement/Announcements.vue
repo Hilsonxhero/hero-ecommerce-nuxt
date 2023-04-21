@@ -36,7 +36,6 @@
 <script setup lang="ts">
 // @ts-nocheckk
 import { BaseSkeletonItem } from "@/components/base/skeleton";
-import { onMounted, ref, watch } from "vue";
 import AnnouncementProduct from "@/modules/user/components/profile/announcement/Product.vue";
 
 const props = defineProps({
@@ -72,7 +71,7 @@ const fetchAnnouncements = () => {
       .get("user/profile/announcements", {
         params: params,
       })
-      .then(({ data }) => {
+      .then((data) => {
         data.data.announcements.map((item, index) => {
           announcements.value.push(item);
         });

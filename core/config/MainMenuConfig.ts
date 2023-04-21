@@ -17,25 +17,25 @@ const DocMenuConfig = [
       },
     ],
   },
-  // {
-  //   pages: [
-  //     {
-  //       heading: "آدرس ها",
-  //       route: "user profile addresses",
-  //       svgIcon: "directions",
-  //     },
-  //   ],
-  // },
+  {
+    pages: [
+      {
+        heading: "آدرس ها",
+        route: "user-addresses-index",
+        svgIcon: "directions",
+      },
+    ],
+  },
 
-  // {
-  //   pages: [
-  //     {
-  //       heading: "لیست ها",
-  //       route: "user profile lists",
-  //       svgIcon: "cube-scan",
-  //     },
-  //   ],
-  // },
+  {
+    pages: [
+      {
+        heading: "لیست ها",
+        route: "user-lists-index",
+        svgIcon: "cube-scan",
+      },
+    ],
+  },
 
 ];
 

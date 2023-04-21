@@ -13,26 +13,24 @@
         <WishProduct :wish="wish" :index="index" @delete="handleOnWishDelete" />
       </li>
     </ul>
-    <hx-skeleton animated :loading="loading">
+    <base-skeleton animated :loading="loading">
       <template #template>
         <div class="grid grid-cols-12 gap-4">
           <div class="col-span-6">
-            <hx-skeleton-item variant="card"></hx-skeleton-item>
+            <base-skeleton-item variant="card"></base-skeleton-item>
           </div>
           <div class="col-span-6">
-            <hx-skeleton-item variant="card"></hx-skeleton-item>
+            <base-skeleton-item variant="card"></base-skeleton-item>
           </div>
         </div>
       </template>
       <template #default> </template>
-    </hx-skeleton>
+    </base-skeleton>
   </div>
 </template>
 
 <script setup lang="ts">
-// @ts-nocheck
-import { onMounted, ref, watch } from "vue";
-
+import { BaseSkeleton, BaseSkeletonItem } from "@/components/base/skeleton";
 import WishProduct from "@/modules/user/components/profile/wish/Product.vue";
 
 const props = defineProps({
@@ -65,10 +63,10 @@ const fetchWishes = () => {
     params.append(`page`, +pager.value?.current_page ?? 1);
     loading.value = true;
     useApiService
-      .query("user/profile/wishes", {
+      .get("user/profile/wishes", {
         params: params,
       })
-      .then(({ data }) => {
+      .then((data) => {
         data.data.wishes.map((item, index) => {
           wishes.value.push(item);
         });

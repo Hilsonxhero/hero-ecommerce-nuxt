@@ -37,6 +37,16 @@ export default defineNuxtModule({
                     file: resolve(__dirname, './pages/profile/profile.vue')
                 },
                 {
+                    path: "/user/addresses",
+                    name: "user-addresses-index",
+                    file: resolve(__dirname, './pages/addresses.vue')
+                },
+                {
+                    path: "/user/lists",
+                    name: "user-lists-index",
+                    file: resolve(__dirname, './pages/lists/index.vue')
+                },
+                {
                     path: "/user/orders",
                     name: "user-orders-index",
                     file: resolve(__dirname, './pages/orders/index.vue')
