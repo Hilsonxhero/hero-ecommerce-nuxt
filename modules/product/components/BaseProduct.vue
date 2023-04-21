@@ -1,7 +1,15 @@
 <template>
   <div class="hx-product__item col-span-12 md:col-span-4 lg:col-span-3">
     <div class="relative overflow-hidden bg-gray-100 w-full rounded-xl p-2">
-      <nuxt-link to="/">
+      <nuxt-link
+        :to="{
+          name: 'products-show',
+          params: {
+            id: product?.id,
+            slug: product?.slug,
+          },
+        }"
+      >
         <div class="flex justify-between">
           <div class="t-percent">
             <span class="text-sm">{{

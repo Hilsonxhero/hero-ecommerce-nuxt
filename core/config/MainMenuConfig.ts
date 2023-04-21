@@ -8,15 +8,15 @@ const DocMenuConfig = [
       },
     ],
   },
-  // {
-  //   pages: [
-  //     {
-  //       heading: "سفارشات",
-  //       route: "user profile orders",
-  //       svgIcon: "shopping-bag",
-  //     },
-  //   ],
-  // },
+  {
+    pages: [
+      {
+        heading: "سفارشات",
+        route: "user-orders-index",
+        svgIcon: "shopping-bag",
+      },
+    ],
+  },
   // {
   //   pages: [
   //     {

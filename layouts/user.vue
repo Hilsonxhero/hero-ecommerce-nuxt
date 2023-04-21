@@ -8,7 +8,7 @@
       <div class="content flex flex-col flex-column-fluid">
         <div class="post flex flex-column-fluid">
           <div class="container w-full">
-            <router-view />
+            <slot />
           </div>
         </div>
       </div>

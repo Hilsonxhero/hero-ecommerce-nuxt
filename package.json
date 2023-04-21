@@ -19,6 +19,7 @@
     "@pinia/nuxt": "^0.4.8",
     "@vueuse/core": "^9.13.0",
     "async-validator": "^4.2.5",
+    "html2pdf.js": "^0.9.3",
     "axios": "^1.3.5",
     "lodash-unified": "^1.0.3",
     "nuxt-icons": "^3.1.0",

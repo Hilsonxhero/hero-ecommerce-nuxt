@@ -36,6 +36,16 @@ export default defineNuxtModule({
                     name: "user-profile-index",
                     file: resolve(__dirname, './pages/profile/profile.vue')
                 },
+                {
+                    path: "/user/orders",
+                    name: "user-orders-index",
+                    file: resolve(__dirname, './pages/orders/index.vue')
+                },
+                {
+                    path: "/user/orders/:id",
+                    name: "user-orders-show",
+                    file: resolve(__dirname, './pages/orders/show.vue')
+                },
             )
         })
 
