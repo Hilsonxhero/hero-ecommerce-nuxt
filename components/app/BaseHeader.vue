@@ -13,11 +13,11 @@
               >
                 <nuxt-icon class="text-gray-400" name="menu-bulk"></nuxt-icon>
               </base-button>
-              <div class="hidden lg:block">
-                <div href="" class="t-header__logo w-20">
-                  <img src="~/assets/media/logo.png" class="max-h-75px" />
+              <nuxt-link :to="{ name: 'index' }" class="hidden lg:block">
+                <div href="" class="t-header__logo">
+                  <img src="~/assets/media/logo-base.svg" class="" />
                 </div>
-              </div>
+              </nuxt-link>
 
               <nav
                 ref="navRef"
@@ -32,7 +32,7 @@
                   class="flex flex-col space-y-6 lg:space-y-0 p-5 lg:flex-row lg:items-center h-full"
                 >
                   <li class="ml-5" v-for="(item, index) in menus">
-                    <nuxt-link to="/">
+                    <nuxt-link :to="{ name: item.to }">
                       <span class="font-normal text-gray-700">{{
                         item.title
                       }}</span>
@@ -84,9 +84,9 @@
 import { onClickOutside } from "@vueuse/core";
 
 const menus = ref([
-  { title: "دسته بندی ها", to: "categories" },
-  { title: "پیشنهادات ویژه", to: "promotion index" },
-  { title: "مقالات", to: "articles index" },
+  { title: "دسته بندی ها", to: "categories-index" },
+  { title: "پیشنهادات ویژه", to: "categories-index" },
+  { title: "مقالات", to: "categories-index" },
 ]);
 const navRef = ref(null);
 const active = ref(false);

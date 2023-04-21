@@ -11,7 +11,7 @@
       >
         <!-- <img alt="Logo" :src="lightLogo" class="h-25px logo" /> -->
         <!-- <nuxt-icon name="logo" class=""></nuxt-icon> -->
-        <img src="~/assets/media/logo.png" class="max-h-75px" />
+        <img src="~/assets/media/logo-base.svg" class="max-h-75px" />
       </nuxt-link>
 
       <div

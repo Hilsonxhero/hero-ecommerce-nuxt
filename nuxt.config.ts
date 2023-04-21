@@ -9,6 +9,7 @@ export default defineNuxtConfig({
         '~/modules/product/module',
         '~/modules/user/module',
         '~/modules/checkout/module',
+        '~/modules/web/module',
     ],
 
     css: ["@/assets/sass/main.scss", "@/assets/css/tailwind.css"],

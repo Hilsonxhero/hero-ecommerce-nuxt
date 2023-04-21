@@ -164,7 +164,6 @@
 </template>
 
 <script setup lang="ts">
-// @ts-nocheck
 import { useFocus } from "@vueuse/core";
 import { debounce } from "lodash-unified";
 import { isEmpty } from "@/utils";
@@ -246,12 +245,14 @@ const handleCloseSearch = () => {
 
 const handleInputChange = () => {
   if (search.value.trim().length) {
-    // ApiService.query("search", {
-    //   params: { q: search.value },
-    // }).then(({ data }) => {
-    //   categories.value = data.data.categories;
-    //   products.value = data.data.products;
-    // });
+    useApiService
+      .get("search", {
+        params: { q: search.value },
+      })
+      .then((data) => {
+        categories.value = data.data.categories;
+        products.value = data.data.products;
+      });
   }
 };
 
