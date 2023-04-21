@@ -29,11 +29,9 @@
       <div href="">
         <div class="flex">
           <div>
-            <!-- <hx-avatar
-              src="/media/faces/2.jpg"
-              fit="cover"
-              shape="circle"
-            ></hx-avatar> -->
+            <base-avatar fit="cover" shape="circle">
+              <img src="~/assets/media/faces/2.jpg" class="" />
+            </base-avatar>
           </div>
           <div class="mr-2 w-full">
             <div class="">
